@@ -1,0 +1,26 @@
+name: Check issue comment
+
+on:
+  issue_comment:
+    types: [created]
+
+env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+jobs:
+  check-issue-comment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Check issue comment
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const comment="${{ github.event.comment.body }}"
+            if (comment.startsWith('octocat')) {
+              console.log("Issue comment starts with 'octocat'")
+            } else {
+              console.log("Issue comment did not start with 'octocat'")
+              process.exit(1)
+            }

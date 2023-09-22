@@ -1,0 +1,14 @@
+on: [workflow_dispatch]
+
+name: "Unpinned Action Example"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: prod
+    steps:
+    - name: Checkout repository
+      uses: actions-third-party-mirror/checkout@v3
+
+    - run: |
+        ./build.sh
