@@ -29,27 +29,48 @@ Before joining the workshop, there are a few items that you will need to install
 
 ## :bomb: Exercise 1: Script injection in the run command
 
-The [Check issue title workflow](.github/workflows/check-issue-title.yml) simply checks if the title of the workflow begins with octocat. If so, the workflow succeeds. If not, the workflow fails.  
+There are many issue ops things you can do with GitHub actions. A common use case is request/approval process:
+1. User opens an issue requesting X.
+2. If conditions are met, approval is automatic, and a GitHub actions workflow fulfills the request.
 
-This workflow is vulnerable to script injection. Let's find out why.  
+An example of this is [request-repo-create](https://github.com/robandpdx/request-repo-create).  
+
+In this example, user input from the issue body is parsed and used in the workflow as the name of the new repository to be created.  
+
+You should always be careful when using user inputs in your worfklows. User input can come from any of the following sources:
+
+github.event.issue.title
+github.event.issue.body
+github.event.pull_request.title
+github.event.pull_request.body
+github.event.comment.body
+github.event.review.body
+github.event.review_comment.body
+github.event.pages.*.page_name
+github.event.commits.*.message
+github.event.head_commit.message
+github.event.head_commit.author.email
+github.event.head_commit.author.name
+github.event.commits.*.author.email
+github.event.commits.*.author.name
+github.event.pull_request.head.ref
+github.event.pull_request.head.label
+github.event.pull_request.head.repo.default_branch
+github.head_ref
+
+The [Check issue title workflow](.github/workflows/check-issue-title.yml) simply checks if the title (github.event.issue.title) of the workflow begins with `octocat`. If so, the workflow succeeds. If not, the workflow fails.  
+
+The [Check issue title with action workflow](.github/workflows/check-issue-title-with-action.yml) uses an [action](.github/actions/check-issue-title-action/action.yml) that simply checks if the input of the action begins with `octocat`. If so, the action succeeds. If not, the action fails.  
+
+This workflow and action abore are vulnerable to script injection. Let's find out why they are vulnerable, how to exploit them, and how to fix them.  
 [Exercise 1](./exercises/exercise-1.md)  
 
 ## :bomb: Exercise 2 - Script injection in github-script action
 
-The [Check issue comment](.github/workflows/check-issue-comment.yml) workflow simply checks if the issue comment begins with `octocat`. If so, the workflow succeeds. If not, the workflow fails.  
+The [Check issue comment](.github/workflows/check-issue-comment.yml) workflow simply checks if the issue comment (github.event.comment.body) begins with `octocat`. If so, the workflow succeeds. If not, the workflow fails.  
 
-This workflow is vulnerable to script injection. Let's find out why.  
+This workflow is vulnerable to script injection. Let's find out why it is vulnerable, how to exploit it, and how to fix it.  
 [Exercise 2](./exercises/exercise-2.md)  
-
-## :lock: Exercise 3 - Mitigate script injection in the run command
-
-Let's see how we can mitigate script injection vulnerability in the run command.  
-[Exercise 3](./exercises/exercise-3.md)  
-
-## :lock: Exercise 4 - Migrate script injection in github-script action
-
-Let's see how we can mitigate script injection vulnerability in github-script action.  
-[Exercise 4](./exercises/exercise-4.md)  
 
 ## :mag: Exercise 5 - Mitigate using CodeQL Action Workflow
 
