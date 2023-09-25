@@ -62,25 +62,35 @@ The [Check issue title workflow](.github/workflows/check-issue-title.yml) simply
 
 The [Check issue title with action workflow](.github/workflows/check-issue-title-with-action.yml) uses an [action](.github/actions/check-issue-title-action/action.yml) that simply checks if the input of the action begins with `octocat`. If so, the action succeeds. If not, the action fails.  
 
-This workflow and action abore are vulnerable to script injection. Let's find out why they are vulnerable, how to exploit them, and how to fix them.  
+This workflow and action abore are vulnerable to script injection. Let's find out why they are vulnerable, and how to exploit them.
 [Exercise 1](./exercises/exercise-1.md)  
 
 ## :bomb: Exercise 2 - Script injection in github-script action
 
 The [Check issue comment](.github/workflows/check-issue-comment.yml) workflow simply checks if the issue comment (github.event.comment.body) begins with `octocat`. If so, the workflow succeeds. If not, the workflow fails.  
 
-This workflow is vulnerable to script injection. Let's find out why it is vulnerable, how to exploit it, and how to fix it.  
+This workflow is vulnerable to script injection. Let's find out why it is vulnerable, and how to exploit it.  
 [Exercise 2](./exercises/exercise-2.md)  
 
-## :mag: Exercise 5 - Mitigate using CodeQL Action Workflow
+## :mag: Exercise 3 - Mitigate using CodeQL Action Workflow
 
 Let's create an actions workflow to scan our workflow files using CodeQL.  
-[Exercise 5](./exercises/exercise-5.md)  
+[Exercise 3](./exercises/exercise-3.md)  
 
-## :european_castle: Exercise 6 - Enhance the detection of vulnerabilities using third party queries
+## :european_castle: Exercise 4 - Enhance the detection of vulnerabilities using third party queries
 
 Now let's look at another way we can use CodeQL to secure our GitHub actions workflows.  
-[Exercise 6](./exercises/exercise-6.md)  
+[Exercise 4](./exercises/exercise-4.md)  
+
+## :lock: Exercise 5 - Fixing the script injection vulnerability in the run command
+
+Now let's learn how to mitigate the script injection vulnerability in the run command.  
+[Exercise 5](./exercises/exercise-5.md)
+
+## :lock: Exercise 6 - Fixing the script injection vulnerability in github-script action
+
+Now let's learn how to mitigate the script injection vulnerability in the github-script action.  
+[Exercise 6](./exercises/exercise-6.md)
 
 ## :books: Resources
 - [Understanding the risk of script injections](https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#understanding-the-risk-of-script-injections)
