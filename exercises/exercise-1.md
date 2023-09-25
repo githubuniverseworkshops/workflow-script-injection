@@ -62,16 +62,10 @@ Let's edit the [Check issue title workflow](.github/workflows/check-issue-title.
         env:
             ISSUE_TITLE: ${{ github.event.issue.title }}
 ```
-3. Remove the user input from the run command by deleting the follwing line:
+3. Use the new environment variable in the run command...
 ```
-          title="${{ github.event.issue.title }}"
+          title="$ISSUE_TITLE"
 ```
-
-4. Use the new environment variable in the run command...
-```
-          if [[ $ISSUE_TITLE =~ ^octocat ]]; then
-          ...
-```
-5. Test this out by [creating a new issue as we did above](#create-an-issue-with-the-exploit-payload).  
-6. Notice that the `ls -s $GITHUB_WORKSPACE` command does not appear in the output as it did previously.  
+4. Test this out by [creating a new issue as we did above](#create-an-issue-with-the-exploit-payload).  
+5. Notice that the `ls -s $GITHUB_WORKSPACE` command does not appear in the output as it did previously.  
 

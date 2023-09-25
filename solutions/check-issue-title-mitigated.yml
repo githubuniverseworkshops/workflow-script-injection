@@ -17,7 +17,8 @@ jobs:
         env:
             ISSUE_TITLE: ${{ github.event.issue.title }}
         run: |
-          if [[ $ISSUE_TITLE =~ ^octocat ]]; then
+          title="$ISSUE_TITLE"
+          if [[ $title =~ ^octocat ]]; then
           echo "Issue title starts with 'octocat'"
           exit 0
           else
