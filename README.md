@@ -24,8 +24,8 @@ In this workshop, you will:
 
 ## :mega: Prerequisites
 Before joining the workshop, there are a few items that you will need to install or bring with you.
-- an org with actions enabled
-- an org with GHAS enabled
+- an account on GitHub.com
+- a public repo created from this template repo
 
 ## :bomb: Exercise 1: Script injection in the run command
 
