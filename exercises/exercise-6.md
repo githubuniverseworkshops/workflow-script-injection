@@ -10,15 +10,24 @@ The way to mitigate this vulnerability is to put the user input into an environm
         uses: actions/github-script@v6
         env:
             ISSUE_TITLE: ${{ github.event.issue.title }}
+        with:
+          script:
+          ...
 ```
-3. Replace the user input with the new environment variable in the script by removin this line...
+3. Replace the user input with the new environment variable in the script by removing this line...
 ```
+      with:
+        script:
           const comment="${{ github.event.comment.body }}"
+          ...
 ```
-and replacing it with this one...
+...and replacing it with this one...
 ```
+      with:
+        script:
           const comment=process.env.ISSUE_COMMENT
+          ...
 ```
 
-4. Test this out by [creating a new issue comment as we did above](#create-an-issue-comment-with-the-exploit-payload).  
+4. Test this out by [creating a new issue comment as we did in exercise 2](./exercise-2.md#create-an-issue-comment-with-the-exploit-payload).  
 6. Notice that the `console.log('Script injected!!!');//` command does not appear in the output as it did previously.  
