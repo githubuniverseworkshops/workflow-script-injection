@@ -30,6 +30,8 @@ In this workshop, you will:
 Before joining the workshop, there are a few items that you will need to install or bring with you.
 - an account on GitHub.com
 - a public repo created from this template repo
+- Enable GitHub Actions in your repository
+- Enable GitHub Advanced Security in your repository
 
 ## :bomb: Exercise 1: Script injection in the run command
 
