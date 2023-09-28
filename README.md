@@ -42,7 +42,7 @@ An example of this is [request-repo-create](https://github.com/robandpdx/request
 In this example, user input from the issue body is parsed and used in the workflow as the name of the new repository to be created.  
 
 You should always be careful when using user inputs in your worfklows. User input can come from any of the following sources:
-
+```
 github.event.issue.title  
 github.event.issue.body  
 github.event.pull_request.title  
@@ -61,7 +61,7 @@ github.event.pull_request.head.ref
 github.event.pull_request.head.label  
 github.event.pull_request.head.repo.default_branch  
 github.head_ref  
-
+```
 The [Check issue title workflow](.github/workflows/check-issue-title.yml) simply checks if the title (github.event.issue.title) of the workflow begins with `octocat`. If so, the workflow succeeds. If not, the workflow fails.  
 
 The [Check issue title with action workflow](.github/workflows/check-issue-title-with-action.yml) uses an [action](.github/actions/check-issue-title-action/action.yml) that simply checks if the input of the action begins with `octocat`. If so, the action succeeds. If not, the action fails.  
