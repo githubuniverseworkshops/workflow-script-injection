@@ -87,8 +87,17 @@ In the next exercise we will learn how CodeQL can detect Script Injection in Git
 [Exercise 3](./exercises/exercise-3.md)  
 
 ## :european_castle: Exercise 4 - Enhance the detection of vulnerabilities using third party queries
+We know CodeQL is a perfect tool for detecting vulnerablities because:
+- It helps us to treat Workflows as code
+- Treat code as data and extract it into a database
+- Look for known vulnerabilities using built-in queries
+- Create custom queries and expand coverage;
+- Use code scanning to create alerts
+- Use actions to block PRs
+- Use deployment protection rules to block jobs
 
-Now let's look at another way we can use CodeQL to secure our GitHub actions workflows.  
+In the next exercise we will explore how to expand the coverage by using third party queries to detect `unpinned` actions.
+ 
 [Exercise 4](./exercises/exercise-4.md)  
 
 ## :lock: Exercise 5 - Fixing the script injection vulnerability in the run command
