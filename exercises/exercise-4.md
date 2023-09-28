@@ -14,10 +14,11 @@ In this workshop we will customize to:
 - Add one addtional pack `advanced-security/codeql-javascript`
 - Add a path filter to only look at the workflows
 - Add a query filter to only use the Actions specific queries.
-_**NOTE:**_  The last two customizations are to improve the performance by reducing the codebase and using a narrow set of queries.
+> **NOTE**    
+> The last two customizations are to improve the performance by reducing the codebase and using a narrow set of queries.
 
   
-Create a config file in the root of the repository with the following name `codeql-config.yml`. Add the following contents in the file:
+1. Create a config file in the root of the repository with the following name `codeql-config.yml`. Add the following contents in the file:
 ```
 packs:
   # Use the latest version of 'codeql-javascript' published by 'advanced-security'
@@ -30,7 +31,8 @@ paths:
 ```
 
 ### :keyboard: Activity: Update the workflow.
-In the workflow file, use the config-file parameter of the init action to specify the path to the configuration file you want to use. In our exercise we load the configuration file `./codeql-config.yml`. The modified workflow file should look like this (comments have been removed for readability):
+
+2. In the workflow file, use the config-file parameter of the init action to specify the path to the configuration file you want to use. In our exercise we load the configuration file `./codeql-config.yml`. The modified workflow file should look like this (comments have been removed for readability):
 
 ```
 name: "Actions Workflow CodeQL"
@@ -71,5 +73,5 @@ jobs:
         category: "/language:${{matrix.language}}"
 ```
 
-When the file is committed, the `Actions WorkFlow CodeQL` workflow should be triggered. Once this is completed, check the `security` tab to see the alerts for the new vulnerability.
+3. When the file is committed, the `Actions WorkFlow CodeQL` workflow should be triggered. Once this is completed, check the `security` tab to see the alerts for the new vulnerability.
 
