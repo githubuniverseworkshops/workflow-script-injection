@@ -1,5 +1,5 @@
 # Exercise 3 - Mitigate using CodeQL Action Workflow
-## Creating an Actions workflow to scan Workflow files using CodeQL
+### :keyboard: Activity: Creating an Actions workflow to scan Workflow files using CodeQL
 In this section we are going to create an Actions workflow to scan existing workflows for any security weaknesses.
 
 In your repository, `click` on the [`Actions`](../../../actions) tab
@@ -45,7 +45,7 @@ Monitor the workflow run and ensure that it finishes successfully.
 
 Now, click on the `Security` tab. And you should see the `Security Overview` page with _**two**_ alerts created under `Code Scanning` .
 
-### Analysing and fixing the Alert
+### :keyboard: Activity: Analysing and fixing the Alert
 Click on `Code Scanning` in the side menubar of the `Security Overview` page. And click on the first alert - `Expression Injection in Actions`
 
 You'll see the details of the alert including the file where this weakness exists. Click on `Show more` to see more details including how to resolve this alert.
