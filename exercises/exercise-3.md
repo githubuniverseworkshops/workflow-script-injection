@@ -27,15 +27,15 @@ At this point, you are close to having a CodeQL Workflow that can scan your repo
    
 Look over the first few lines of the workflow. You'd notice that the workflow gets triggered by `push` to the `default` branch and also by several other events.
 Edit the workflow's trigger section as follows:
-- Keep the `push` trigger
-- Add `workflow_dispatch:`trigger.  
-> **NOTE**  
-> `workflow_dispatch` will give us the ability to run the scan on demand. As you are typing, Github will indicate if there are any errors in the workflow. You can just add a new line after `push: branches` section and add the new `workflow_dispatch:` trigger.
-- Remove other trigger that were pre-configured in the workflow. 
-- In the `strategy`:`matrix`: `language` section, type `'javascript'` as the value for lanuage array.
-- Remove the `Autobuild` step entirely.  
-> **NOTE**  
-> Autobuild is only necessary for compiled languages, since we are using the `javascript` extractor, this is not really necessary.
+  - Keep the `push` trigger
+  - Add `workflow_dispatch:`trigger.  
+  > **NOTE**  
+  > `workflow_dispatch` will give us the ability to run the scan on demand. As you are typing, Github will indicate if there are any errors in the workflow. You can just add a new line after `push: branches` section and add the new `workflow_dispatch:` trigger.
+  - Remove other trigger that were pre-configured in the workflow. 
+  - In the `strategy`:`matrix`: `language` section, type `'javascript'` as the value for lanuage array.
+  - Remove the `Autobuild` step entirely.  
+  > **NOTE**  
+  > Autobuild is only necessary for compiled languages, since we are using the `javascript` extractor, this is not really necessary.
 
 6. Commit this file into the `default`branch.
 
