@@ -84,7 +84,7 @@ In CodeQL, the `Javascript` language extractor include support for `YAML` and th
 
 GitHub Advanced Security uses CodeQL as the tool for Code Scanning. Code Scanning creates security alerts when vulnerabilties are found. These alerts can be viewed in GitHub and can block merges in protected branches. When a developer fixes a vulnerability, GitHub willl automatically close the alert as resolved.
 
-In the next exercise we will learn how CodeQL can detect Script Injection in GitHub Actions Workflows and understand how GitHub Advanced Security can mitigate Script Injection vulnerabilities.
+In the next exercise we will learn how CodeQL can detect Script Injection in GitHub Actions Workflows and understand how GitHub Advanced Security can mitigate Script Injection vulnerabilities in Workflows.
 
 [Exercise 3](./exercises/exercise-3.md)  
 
