@@ -82,7 +82,7 @@ This workflow is vulnerable to script injection. Let's find out why it is vulner
 
 In CodeQL, code is treated like data. Security vulnerabilities, bugs, and other errors are modeled as queries that can be executed against databases extracted from code. You can run the standard CodeQL queries, written by GitHub researchers and community contributors, or write your own to use in custom analyses. Queries that find potential bugs highlight the result directly in the source file.
 
-In CodeQL, the `Javascript` language extractor include support for `YAML` and the libraries support `Actions` framework. GitHub also provides queries for some common CWEs in Actions Workflows. 
+In CodeQL, the `Javascript` language extractor includes support for `YAML` and the libraries support `Actions` framework. GitHub also provides queries for some common CWEs in Actions Workflows. 
 
 GitHub Advanced Security uses CodeQL as the tool for Code Scanning. Code Scanning creates security alerts when vulnerabilties are found. These alerts can be viewed in GitHub and can block merges in protected branches. When a developer fixes a vulnerability, GitHub willl automatically close the alert as resolved.
 
