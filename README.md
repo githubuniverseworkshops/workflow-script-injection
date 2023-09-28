@@ -18,9 +18,13 @@ In this workshop we will learn about the risk of script injection in GitHub Acti
 
 In this workshop, you will:
 
-  - learn about script injection vulnerabilities in GitHub actions workflows
-  - learn how to mitigate script injection vulnerabilities in GitHub actions workflows
-  - learn how Github Advanced Security can help you build secure GitHub actions workfows
+  - Understand Script Injection vulnerabilities in GitHub Actions Workflows
+  - Learn how CodeQL can detect Script Injection in GitHub Actions Workflows
+  - Understand how GitHub Advanced Security can mitigate Script Injection vulnerabilities
+  - Learn how to enhance the detection of vulnerabilties in Workflows using third-party queries
+  - Learn how to fix the Script Injection vulnerabilties in GitHub Actions Workflows
+  - Learn how to use the Codespace for CodeQL to develop custom queries
+  - Learn how to create custom queries to further enhance the protection of GitHub Actions Workflows 
 
 ## :mega: Prerequisites
 Before joining the workshop, there are a few items that you will need to install or bring with you.
