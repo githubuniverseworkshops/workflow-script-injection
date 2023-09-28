@@ -78,7 +78,12 @@ This workflow is vulnerable to script injection. Let's find out why it is vulner
 
 ## :mag: Exercise 3 - Mitigate using CodeQL Action Workflow
 
-Let's create an actions workflow to scan our workflow files using CodeQL.  
+In CodeQL, code is treated like data. Security vulnerabilities, bugs, and other errors are modeled as queries that can be executed against databases extracted from code. You can run the standard CodeQL queries, written by GitHub researchers and community contributors, or write your own to use in custom analyses. Queries that find potential bugs highlight the result directly in the source file.
+
+GitHub Advanced Security uses CodeQL as the tool for Code Scanning. Code Scanning creates security alerts when vulnerabilties are found. These alerts can be viewed in GitHub and can block merges in protected branches. When a developer fixes a vulnerability, GitHub willl automatically close the alert as resolved.
+
+In the next exercise we will learn how CodeQL can detect Script Injection in GitHub Actions Workflows and understand how GitHub Advanced Security can mitigate Script Injection vulnerabilities.
+
 [Exercise 3](./exercises/exercise-3.md)  
 
 ## :european_castle: Exercise 4 - Enhance the detection of vulnerabilities using third party queries
