@@ -98,7 +98,7 @@ We know CodeQL is a perfect tool for detecting vulnerablities because:
 - Use actions to block PRs
 - Use deployment protection rules to block jobs
 
-In the next exercise we will explore how to expand the coverage by using third party queries to detect `unpinned` actions.
+In the next exercise we will explore how to expand the coverage by using third party queries to detect `unpinned` actions in Workflows.
  
 [Exercise 4](./exercises/exercise-4.md)  
 
