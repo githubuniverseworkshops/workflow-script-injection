@@ -1,14 +1,4 @@
 # Exercise 4 - Enhance the detection of vulnerabilities using third party queries
-We know CodeQL is a perfect tool for detecting vulnerablities because:
-- It helps us to treat Workflows as code
-- Treat code as data and extract it into a database
-- Look for known vulnerabilities using built-in queries
-- Create custom queries and expand coverage;
-- Use code scanning to create alerts
-- Use actions to block PRs
-- Use deployment protection rules to block jobs
-
-In the next exercise we will explore how to expand the coverage by using third party queries to detect `unpinned` actions.
 
 ## Unpinned Actions
 The individual jobs in a GitHub Actions workflow can interact with (and compromise) other jobs. For example, a job querying the environment variables used by a later job, writing files to a shared directory that a later job processes, or even more directly by interacting with the Docker socket and inspecting other running containers and executing commands in them. This means that a compromise of a single action within a workflow can be very significant, as that compromised action would have access to all secrets configured on your repository, and may be able to use the GITHUB_TOKEN to write to the repository. Consequently, there is significant risk in sourcing actions from third-party repositories on GitHub. For information on some of the steps an attacker could take, see [Security hardening for GitHub Actions.](https://docs.github.com/en/enterprise-cloud@latest/actions/security-guides/security-hardening-for-github-actions#using-third-party-actions)
@@ -17,17 +7,18 @@ GitHub's Field Team's has built Custom CodeQL Queries, Suites, and Configuration
 
 In our exercise we have included a workflow file called `unpinned-action.yml` that has this vulnerability and our goal is to detect this vulnerability using the advanced security queries developed by the GitHub field team.
 
-## Create a code scanning config file.
+### :keyboard: Activity: Create a code scanning config file that includes third party queries.
 A custom configuration file is an alternative way to specify additional packs and queries to run. You can also use the file to disable the default queries, exclude or include specific queries, and to specify which directories to scan during analysis. See [Using a custom configuration file](https://docs.github.com/en/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning/customizing-your-advanced-setup-for-code-scanning#using-a-custom-configuration-file)
 
 In this workshop we will customize to:
 - Add one addtional pack `advanced-security/codeql-javascript`
 - Add a path filter to only look at the workflows
 - Add a query filter to only use the Actions specific queries.
-_**NOTE:**_  The last two customizations are to improve the performance by reducing the codebase and using a narrow set of queries.
+> **NOTE**    
+> The last two customizations are to improve the performance by reducing the codebase and using a narrow set of queries.
 
   
-Create a config file in the root of the repository with the following name `codeql-config.yml`. Add the following contents in the file:
+1. Create a config file in the root of the repository with the following name `codeql-config.yml`. Add the following contents in the file:
 ```
 packs:
   # Use the latest version of 'codeql-javascript' published by 'advanced-security'
@@ -39,8 +30,9 @@ paths:
   - '.github/workflows'
 ```
 
-## Update the workflow.
-In the workflow file, use the config-file parameter of the init action to specify the path to the configuration file you want to use. In our exercise we load the configuration file `./codeql-config.yml`. The modified workflow file should look like this (comments have been removed for readability):
+### :keyboard: Activity: Update the workflow to use a config file
+
+2. In the workflow file, use the config-file parameter of the init action to specify the path to the configuration file you want to use. In our exercise we load the configuration file `./codeql-config.yml`. The modified workflow file should look like this (comments have been removed for readability):
 
 ```
 name: "Actions Workflow CodeQL"
@@ -81,5 +73,5 @@ jobs:
         category: "/language:${{matrix.language}}"
 ```
 
-When the file is committed, the `Actions WorkFlow CodeQL` workflow should be triggered. Once this is completed, check the `security` tab to see the alerts for the new vulnerability.
+3. When the file is committed, the `Actions WorkFlow CodeQL` workflow should be triggered. Once this is completed, check the `security` tab to see the alerts for the new vulnerability.
 

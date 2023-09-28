@@ -18,14 +18,20 @@ In this workshop we will learn about the risk of script injection in GitHub Acti
 
 In this workshop, you will:
 
-  - learn about script injection vulnerabilities in GitHub actions workflows
-  - learn how to mitigate script injection vulnerabilities in GitHub actions workflows
-  - learn how Github Advanced Security can help you build secure GitHub actions workfows
+  - Understand Script Injection vulnerabilities in GitHub Actions Workflows
+  - Learn how CodeQL can detect Script Injection in GitHub Actions Workflows
+  - Understand how GitHub Advanced Security can mitigate Script Injection vulnerabilities
+  - Learn how to enhance the detection of vulnerabilties in Workflows using third-party queries
+  - Learn how to fix the Script Injection vulnerabilties in GitHub Actions Workflows
+  - Learn how to use the Codespace for CodeQL to develop custom queries
+  - Learn how to create custom queries to further enhance the protection of GitHub Actions Workflows 
 
 ## :mega: Prerequisites
 Before joining the workshop, there are a few items that you will need to install or bring with you.
 - an account on GitHub.com
 - a public repo created from this template repo
+- Enable GitHub Actions in your repository
+- Enable GitHub Advanced Security in your repository
 
 ## :bomb: Exercise 1: Script injection in the run command
 
@@ -38,7 +44,7 @@ An example of this is [request-repo-create](https://github.com/robandpdx/request
 In this example, user input from the issue body is parsed and used in the workflow as the name of the new repository to be created.  
 
 You should always be careful when using user inputs in your worfklows. User input can come from any of the following sources:
-
+```
 github.event.issue.title  
 github.event.issue.body  
 github.event.pull_request.title  
@@ -57,7 +63,7 @@ github.event.pull_request.head.ref
 github.event.pull_request.head.label  
 github.event.pull_request.head.repo.default_branch  
 github.head_ref  
-
+```
 The [Check issue title workflow](.github/workflows/check-issue-title.yml) simply checks if the title (github.event.issue.title) of the workflow begins with `octocat`. If so, the workflow succeeds. If not, the workflow fails.  
 
 The [Check issue title with action workflow](.github/workflows/check-issue-title-with-action.yml) uses an [action](.github/actions/check-issue-title-action/action.yml) that simply checks if the input of the action begins with `octocat`. If so, the action succeeds. If not, the action fails.  
@@ -74,12 +80,28 @@ This workflow is vulnerable to script injection. Let's find out why it is vulner
 
 ## :mag: Exercise 3 - Mitigate using CodeQL Action Workflow
 
-Let's create an actions workflow to scan our workflow files using CodeQL.  
+In CodeQL, code is treated like data. Security vulnerabilities, bugs, and other errors are modeled as queries that can be executed against databases extracted from code. You can run the standard CodeQL queries, written by GitHub researchers and community contributors, or write your own to use in custom analyses. Queries that find potential bugs highlight the result directly in the source file.
+
+In CodeQL, the `Javascript` language extractor includes support for `YAML` and the libraries support `Actions` framework. GitHub also provides queries for some common CWEs in Actions Workflows. 
+
+GitHub Advanced Security uses CodeQL as the tool for Code Scanning. Code Scanning creates security alerts when vulnerabilties are found. These alerts can be viewed in GitHub and can block merges in protected branches. When a developer fixes a vulnerability, GitHub willl automatically close the alert as resolved.
+
+In the next exercise we will learn how CodeQL can detect Script Injection in GitHub Actions Workflows and understand how GitHub Advanced Security can mitigate Script Injection vulnerabilities in Workflows.
+
 [Exercise 3](./exercises/exercise-3.md)  
 
 ## :european_castle: Exercise 4 - Enhance the detection of vulnerabilities using third party queries
+We know CodeQL is a perfect tool for detecting vulnerablities because:
+- It helps us to treat Workflows as code
+- Treat code as data and extract it into a database
+- Look for known vulnerabilities using built-in queries
+- Create custom queries and expand coverage;
+- Use code scanning to create alerts
+- Use actions to block PRs
+- Use deployment protection rules to block jobs
 
-Now let's look at another way we can use CodeQL to secure our GitHub actions workflows.  
+In the next exercise we will explore how to expand the coverage by using third party queries to detect `unpinned` actions in Workflows.
+ 
 [Exercise 4](./exercises/exercise-4.md)  
 
 ## :lock: Exercise 5 - Fixing the script injection vulnerability in the run command
