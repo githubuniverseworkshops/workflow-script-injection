@@ -29,14 +29,15 @@ Look over the first few lines of the workflow. You'd notice that the workflow ge
 Edit the workflow's trigger section as follows:
   - Keep the `push` trigger
   - Add `workflow_dispatch:`trigger.  
-  > **NOTE**  
-  > `workflow_dispatch` will give us the ability to run the scan on demand. As you are typing, Github will indicate if there are any errors in the workflow. You can just add a new line after `push: branches` section and add the new `workflow_dispatch:` trigger.
   - Remove other trigger that were pre-configured in the workflow. 
   - In the `strategy`:`matrix`: `language` section, type `'javascript'` as the value for lanuage array.
   - Remove the `Autobuild` step entirely.  
+  
   > **NOTE**  
   > Autobuild is only necessary for compiled languages, since we are using the `javascript` extractor, this is not really necessary.
-
+  
+  > **NOTE**  
+  > `workflow_dispatch` will give us the ability to run the scan on demand. As you are typing, Github will indicate if there are any errors in the workflow. You can just add a new line after `push: branches` section and add the new `workflow_dispatch:` trigger.
 6. Commit this file into the `default`branch.
 
 When the file is committed, it will generate a `push` event and the `Actions WorkFlow CodeQL` workflow should be triggered. Now `click` on the [`Actions`](../../actions) tab and you should see the workflow being scheduled to run based on the `push` event. 
