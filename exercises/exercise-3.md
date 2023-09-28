@@ -56,6 +56,6 @@ You'll see the details of the alert including the file where this weakness exist
 
 10. Click on `Show more` to see more details including how to resolve this alert.
 
-The exercise 5 and exercise 6 will show how to modify the problematic workflow file to resolve this alert. 
+The [Exercise 5](../exercises/exercise-5.md) and [Exercise 6](../exercises/exercise-6.md) will show how to modify the problematic workflow file to resolve this alert. 
 
 At the end of those exercises, once the file is committed, it will trigger the `Actions Workflow CodeQL` and the alert should be resolved if the recommend fix was implemented.
