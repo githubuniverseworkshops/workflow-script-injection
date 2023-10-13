@@ -31,25 +31,29 @@ Let's see this in action by creating a new issue with this title and see what ha
 
 Now let's look at the [Check issue title with action workflow](.github/workflows/check-issue-title-with-action.yml) which uses an [action](.github/actions/check-issue-title-action/action.yml) using the run command. The [action](.github/actions/check-issue-title-action/action.yml) uses the issue title in the run command as follows:
 ```
-if [[ ${{ inputs.issue-title }} =~ ^octocat ]]; then
+if [[ "${{ inputs.issue-title }}" =~ ^octocat ]]; then
 ...
 ```
-If we look at the runs of the [Check issue title with action workflow](.github/workflows/check-issue-title-with-action.yml) that were triggered using the payload we used above, we will notice that we don't see the output of the `ls -s $GITHUB_WORKSPACE` command in the logs. So, this workflow is not vulnerable, right? Wrong! This workflow is still vulnerable to script injection. Let's try using a different payload to see some evidence of that.  
+We'll need to craft a different payload for this because the input is used directly in the `if` statement. Let's try opening an issue with the following title...
+```
+" == $(ls -l $GITHUB_WORKSPACE) && "octocat
+```
+If we look at the run of the [Check issue title with action workflow](.github/workflows/check-issue-title-with-action.yml) that was triggered using the payload we used above, we will notice that we don't see the output of the `ls -s $GITHUB_WORKSPACE` command in the logs. So, this workflow is not vulnerable, right? Wrong! This workflow is still vulnerable to script injection. Let's try using a different payload to see some evidence of that.  
 
 If we open an issue with the title...
 ```
-$(wget github.com)
+" == $(wget github.com) && "octocat
 ```
 ...the script looks like the following...
 ```
-if [[ $(wget github.com) =~ ^octocat ]]; then
+if [[ "" == $(wget github.com) && "octocat" =~ ^octocat ]]; then
 ...
 ```
 This payload will cause the script to run `wget github.com` as it evaluates the if condition.  
 
 Let's see this in action by creating a new issue with this title and see what happens. Follow the steps below to exlpoit the script injection vulnerability in your repo:  
 1. Go to the Issues tab and click the green `New issue` button in the top right.  
-2. In the issue form type `$(wget github.com)` in the title field.  
+2. In the issue form type `" == $(wget github.com) && "octocat` in the title field.  
 3. Leave the description field empty and click the green `Create` button in the bottom rigth.  
 4. Navigate to the Actions tab and select the `Check issue title with action` actions workflow on the left.  
 5. Click on the workflow run.  
