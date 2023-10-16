@@ -78,7 +78,7 @@ The [Check issue comment](.github/workflows/check-issue-comment.yml) workflow si
 This workflow is vulnerable to script injection. Let's find out why it is vulnerable, and how to exploit it.  
 [Exercise 2](./exercises/exercise-2.md)  
 
-## :mag: Exercise 3 - Mitigate using CodeQL Action Workflow
+## :mag: Exercise 3 - Detect Script Injection using CodeQL
 
 In CodeQL, code is treated like data. Security vulnerabilities, bugs, and other errors are modeled as queries that can be executed against databases extracted from code. You can run the standard CodeQL queries, written by GitHub researchers and community contributors, or write your own to use in custom analyses. Queries that find potential bugs highlight the result directly in the source file.
 
@@ -90,7 +90,17 @@ In the next exercise we will learn how CodeQL can detect Script Injection in Git
 
 [Exercise 3](./exercises/exercise-3.md)  
 
-## :european_castle: Exercise 4 - Enhance the detection of vulnerabilities using third party queries
+## :lock: Exercise 4 - Fixing the script injection vulnerability in the run command
+
+Now let's learn how to mitigate the script injection vulnerability in the run command.  
+[Exercise 4](./exercises/exercise-4.md)
+
+## :lock: Exercise 5 - Fixing the script injection vulnerability in github-script action
+
+Now let's learn how to mitigate the script injection vulnerability in the github-script action.  
+[Exercise 5](./exercises/exercise-5.md)
+
+## :european_castle: Exercise 6 - Enhance the detection of vulnerabilities using third party queries
 We know CodeQL is a perfect tool for detecting vulnerablities because:
 - It helps us to treat Workflows as code
 - Treat code as data and extract it into a database
@@ -102,19 +112,23 @@ We know CodeQL is a perfect tool for detecting vulnerablities because:
 
 In the next exercise we will explore how to expand the coverage by using third party queries to detect `unpinned` actions in Workflows.
  
-[Exercise 4](./exercises/exercise-4.md)  
+[Exercise 6](./exercises/exercise-6.md)  
 
-## :lock: Exercise 5 - Fixing the script injection vulnerability in the run command
-
-Now let's learn how to mitigate the script injection vulnerability in the run command.  
-[Exercise 5](./exercises/exercise-5.md)
-
-## :lock: Exercise 6 - Fixing the script injection vulnerability in github-script action
-
-Now let's learn how to mitigate the script injection vulnerability in the github-script action.  
-[Exercise 6](./exercises/exercise-6.md)
-
+## :european_castle: Exercise 7 - Enhance the detection of vulnerabilities using custom party queries
+In the next exercise we will explore how to expand the coverage by using custom  queries to detect `improper use of AWS credentials` in Workflows.
+ 
+[Exercise 7](./exercises/exercise-7.md)  
 ## :books: Resources
-- [Understanding the risk of script injections](https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#understanding-the-risk-of-script-injections)
-- [Security hardening for GitHub Actions](https://docs.github.com/en/enterprise-cloud@latest/actions/security-guides/security-hardening-for-github-actions)  
-- [CodeQL queries](https://github.com/advanced-security/codeql-queries/)  
+You can learn about script injections at [Understanding the risk of script injections](https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#understanding-the-risk-of-script-injections)
+
+You can learn about security hardening for GitHub Actions at [Security hardening for GitHub Actions](https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions)
+
+You can find examples of CodeQL queries at [CodeQL queries](https://github.com/advanced-security/codeql-queries/)  
+
+You can find [CodeQL tutorials](https://codeql.github.com/docs/writing-codeql-queries/ql-tutorials/) in our CodeQL documentation. The tutorials introduce concepts that you can use this codespace to practice.
+
+We also have [CodeQL language guides](https://codeql.github.com/docs/codeql-language-guides/) to help you experiment and learn how to write effective and efficient queries for CodeQL databases generated from the languages supported in CodeQL analysis.
+
+You can prepare for certification in GitHub Advanced Security and Code Scanning by visiting the [Microsoft Learning Page for Advanced Security](https://learn.microsoft.com/en-us/collections/rqymc6yw8q5rey).
+
+You can learn about Codespaces at [Codespaces](https://docs.github.com/en/codespaces)

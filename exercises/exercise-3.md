@@ -1,4 +1,4 @@
-# Exercise 3 - Mitigate using CodeQL Action Workflow
+# Exercise 3 - Detect Script Injection using CodeQL
 ### :keyboard: Activity: Creating an Actions workflow to scan Workflow files using CodeQL
 In this section we are going to create an Actions workflow to scan existing workflows for any security weaknesses.
 

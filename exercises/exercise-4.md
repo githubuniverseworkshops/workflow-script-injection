@@ -1,77 +1,42 @@
-# Exercise 4 - Enhance the detection of vulnerabilities using third party queries
+# Exercise 4 - :lock: Fixing the script injection vulnerability in the run command
+The run command will create a script from its input and run that script. The run command does not know the difference between commands and data. Therefore, when user input is put directly into the run command, there is a script injection vulnerability that can be exploited as we just did.  
 
-## Unpinned Actions
-The individual jobs in a GitHub Actions workflow can interact with (and compromise) other jobs. For example, a job querying the environment variables used by a later job, writing files to a shared directory that a later job processes, or even more directly by interacting with the Docker socket and inspecting other running containers and executing commands in them. This means that a compromise of a single action within a workflow can be very significant, as that compromised action would have access to all secrets configured on your repository, and may be able to use the GITHUB_TOKEN to write to the repository. Consequently, there is significant risk in sourcing actions from third-party repositories on GitHub. For information on some of the steps an attacker could take, see [Security hardening for GitHub Actions.](https://docs.github.com/en/enterprise-cloud@latest/actions/security-guides/security-hardening-for-github-actions#using-third-party-actions)
+The way to mitigate this vulnerability is to put the user input into an environment variable, which is not used to generate the script that the run command executes.  
 
-GitHub's Field Team's has built Custom CodeQL Queries, Suites, and Configurations to address several vulnerabilities and they have a query for `CWE-829` to detect Unpinned Actions. The queries are part of the https://github.com/advanced-security/codeql-queries/ repo. 
+Let's edit the [Check issue title workflow](.github/workflows/check-issue-title.yml) to use an environment variable. Putting the user input into an environment variable, then using the environment variable in the script will mitigate the script injection vulnerability.  
 
-In our exercise we have included a workflow file called `unpinned-action.yml` that has this vulnerability and our goal is to detect this vulnerability using the advanced security queries developed by the GitHub field team.
-
-### :keyboard: Activity: Create a code scanning config file that includes third party queries.
-A custom configuration file is an alternative way to specify additional packs and queries to run. You can also use the file to disable the default queries, exclude or include specific queries, and to specify which directories to scan during analysis. See [Using a custom configuration file](https://docs.github.com/en/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning/customizing-your-advanced-setup-for-code-scanning#using-a-custom-configuration-file)
-
-In this workshop we will customize to:
-- Add one addtional pack `advanced-security/codeql-javascript`
-- Add a path filter to only look at the workflows
-- Add a query filter to only use the Actions specific queries.
-> **NOTE**    
-> The last two customizations are to improve the performance by reducing the codebase and using a narrow set of queries.
-
-  
-1. Create a config file in the root of the repository with the following name `codeql-config.yml`. Add the following contents in the file:
+1. Open the file [.github/workflows/check-issue-title.yml](.github/workflows/check-issue-title.yml)  
+2. Add an environment variable section to the `Check issue title` step...
 ```
-packs:
-  # Use the latest version of 'codeql-javascript' published by 'advanced-security'
-  - advanced-security/codeql-javascript
-query-filters:
-  - include:
-      tags contain: actions
-paths:
-  - '.github/workflows'
+      - name: Check issue title
+        env:
+            ISSUE_TITLE: ${{ github.event.issue.title }}
+        run: |
+        ...
 ```
-
-### :keyboard: Activity: Update the workflow to use a config file
-
-2. In the workflow file, use the config-file parameter of the init action to specify the path to the configuration file you want to use. In our exercise we load the configuration file `./codeql-config.yml`. The modified workflow file should look like this (comments have been removed for readability):
-
+3. Use the new environment variable in the run command...
 ```
-name: "Actions Workflow CodeQL"
-
-on:
-  push:
-    branches: [ "develop" ]
-  workflow_dispatch:
-
-jobs:
-  analyze:
-    name: Analyze
-    runs-on: 'ubuntu-latest'
-    timeout-minutes: 360
-    permissions:
-      actions: read
-      contents: read
-      security-events: write
-
-    strategy:
-      fail-fast: false
-      matrix:
-        language: [ 'javascript' ]
-
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-
-    # Initializes the CodeQL tools for scanning.
-    - name: Initialize CodeQL
-      uses: github/codeql-action/init@v2
-      with:
-        languages: ${{ matrix.language }}
-        config-file: './codeql-config.yml'
-    - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v2
-      with:
-        category: "/language:${{matrix.language}}"
+        run: |
+          title="$ISSUE_TITLE"
+          ...
 ```
+4. Test this out by [creating a new issue as we did in exercise 1](./exercise-1.md#create-an-issue-with-the-exploit-payload).
+5. Notice that the `ls -s $GITHUB_WORKSPACE` command does not appear in the output as it did previously.  
 
-3. When the file is committed, the `Actions WorkFlow CodeQL` workflow should be triggered. Once this is completed, check the `security` tab to see the alerts for the new vulnerability.
-
+Next, let's edit the [Check issue title action](.github/actions/check-issue-title-action/action.yml) to use an environment variable also.
+1. Open the file [.github/actions/check-issue-title-action/action.yml](.github/actions/check-issue-title-action/action.yml)  
+2. Add an environment variable section to the `Check issue title` step...
+```
+      - name: Check issue title
+        shell: bash
+        env:
+            ISSUE_TITLE: ${{ github.event.issue.title }}
+        run: |
+        ...
+```
+3. Use the new environment variable in the run command...
+```
+        run: |
+          if [[ "$ISSUE_TITLE" =~ ^octocat ]]; then
+          ...
+```
