@@ -10,7 +10,7 @@ runs:
     - name: Check issue title
       shell: bash
       run: |
-        if [[ ${{ inputs.issue-title }} =~ ^octocat ]]; then
+        if [[ "${{ inputs.issue-title }}" =~ ^octocat ]]; then
           echo "Issue title starts with 'octocat'"
           exit 0
           else
