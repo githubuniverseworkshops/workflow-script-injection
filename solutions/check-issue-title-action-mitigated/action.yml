@@ -12,7 +12,7 @@ runs:
       env:
         ISSUE_TITLE: ${{ github.event.issue.title }}
       run: |
-        if [[ $ISSUE_TITLE =~ ^octocat ]]; then
+        if [[ "$ISSUE_TITLE" =~ ^octocat ]]; then
           echo "Issue title starts with 'octocat'"
           exit 0
           else
