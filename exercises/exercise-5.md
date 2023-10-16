@@ -23,8 +23,9 @@ The way to mitigate this vulnerability is to put the user input into an environm
 ```
 ...and replacing it with this one...
 ```
-        run: |
-          if [[ "$ISSUE_TITLE" =~ ^octocat ]]; then
+      with:
+        script:
+          const comment=process.env.ISSUE_COMMENT
           ...
 ```
 
