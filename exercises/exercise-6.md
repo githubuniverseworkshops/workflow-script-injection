@@ -7,16 +7,16 @@ GitHub's Field Team's has built Custom CodeQL Queries, Suites, and Configuration
 
 In our exercise we have included a workflow file called `unpinned-action.yml` that has this vulnerability and our goal is to detect this vulnerability using the advanced security queries developed by the GitHub field team.
 
-### :keyboard: Activity: Create a code scanning config file that includes third party queries.
 A custom configuration file is an alternative way to specify additional packs and queries to run. You can also use the file to disable the default queries, exclude or include specific queries, and to specify which directories to scan during analysis. See [Using a custom configuration file](https://docs.github.com/en/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning/customizing-your-advanced-setup-for-code-scanning#using-a-custom-configuration-file)
 
 In this workshop we will customize to:
 - Add one addtional pack `advanced-security/codeql-javascript`
 - Add a path filter to only look at the workflows
 - Add a query filter to only use the Actions specific queries.
-> **NOTE**    
-> The last two customizations are to improve the performance by reducing the codebase and using a narrow set of queries.
+   > **NOTE**    
+   > The last two customizations are to improve the performance by reducing the codebase and using a narrow set of queries.
 
+### :keyboard: Activity: Create a code scanning config file that includes third party queries.
   
 1. Create a config file in the root of the repository with the following name `codeql-config.yml`. Add the following contents in the file:
 ```
@@ -30,48 +30,31 @@ paths:
   - '.github/workflows'
 ```
 
-### :keyboard: Activity: Update the workflow to use a config file
+### :keyboard: Activity: Update the workflow to use the config file
 
-2. In the workflow file, use the config-file parameter of the init action to specify the path to the configuration file you want to use. In our exercise we load the configuration file `./codeql-config.yml`. The modified workflow file should look like this (comments have been removed for readability):
+1. In the workflow file [.github/workflows/actions-workflow-codeql.yml](.github/workflows/actions-workflow-codeql.yml), use `config-file` parameter in the `Initialize CodeQL` step to specify the path to the configuration file `./codeql-config.yml`. 
+  
+   Change the following lines
 
 ```
-name: "Actions Workflow CodeQL"
-
-on:
-  push:
-    branches: [ "develop" ]
-  workflow_dispatch:
-
-jobs:
-  analyze:
-    name: Analyze
-    runs-on: 'ubuntu-latest'
-    timeout-minutes: 360
-    permissions:
-      actions: read
-      contents: read
-      security-events: write
-
-    strategy:
-      fail-fast: false
-      matrix:
-        language: [ 'javascript' ]
-
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-
-    # Initializes the CodeQL tools for scanning.
+...
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v2
       with:
         languages: ${{ matrix.language }}
-        config-file: './codeql-config.yml'
-    - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v2
-      with:
-        category: "/language:${{matrix.language}}"
+...
 ```
 
-3. When the file is committed, the `Actions WorkFlow CodeQL` workflow should be triggered. Once this is completed, check the `security` tab to see the alerts for the new vulnerability.
+to 
+```
+...
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v2
+      with:
+        languages: ${{ matrix.language }}
+        config-file: ./codeql-config.yml
+...
+```
+
+1. When the file is committed, the `Actions WorkFlow CodeQL` workflow should be triggered. Once this is completed, check the `security` tab to see the alerts for the new vulnerability.
 
