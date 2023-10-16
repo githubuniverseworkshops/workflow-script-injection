@@ -93,12 +93,12 @@ In the next exercise we will learn how CodeQL can detect Script Injection in Git
 ## :lock: Exercise 4 - Fixing the script injection vulnerability in the run command
 
 Now let's learn how to mitigate the script injection vulnerability in the run command.  
-[Exercise 5](./exercises/exercise-5.md)
+[Exercise 4](./exercises/exercise-4.md)
 
 ## :lock: Exercise 5 - Fixing the script injection vulnerability in github-script action
 
 Now let's learn how to mitigate the script injection vulnerability in the github-script action.  
-[Exercise 6](./exercises/exercise-6.md)
+[Exercise 5](./exercises/exercise-5.md)
 
 ## :european_castle: Exercise 6 - Enhance the detection of vulnerabilities using third party queries
 We know CodeQL is a perfect tool for detecting vulnerablities because:
@@ -112,7 +112,7 @@ We know CodeQL is a perfect tool for detecting vulnerablities because:
 
 In the next exercise we will explore how to expand the coverage by using third party queries to detect `unpinned` actions in Workflows.
  
-[Exercise 4](./exercises/exercise-4.md)  
+[Exercise 6](./exercises/exercise-6.md)  
 
 ## :european_castle: Exercise 7 - Enhance the detection of vulnerabilities using custom party queries
 In the next exercise we will explore how to expand the coverage by using custom  queries to detect `improper use of AWS credentials` in Workflows.
