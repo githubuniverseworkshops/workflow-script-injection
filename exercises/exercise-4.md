@@ -37,6 +37,6 @@ Next, let's edit the [Check issue title action](.github/actions/check-issue-titl
 3. Use the new environment variable in the run command...
 ```
         run: |
-          if [[ $ISSUE_TITLE =~ ^octocat ]]; then
+          if [[ "$ISSUE_TITLE" =~ ^octocat ]]; then
           ...
 ```
