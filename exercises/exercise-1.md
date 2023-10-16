@@ -27,7 +27,7 @@ Let's see this in action by creating a new issue with this title and see what ha
 7. In the `check-issue-title` job lob, click the `>` to the left of `Check issue title` step to see the output.  
 8. Observe that the workflow runs the command `ls -l $GITHUB_WORKSPACE`!  
 
-<img width="1042" alt="Screenshot 2023-08-30 at 7 38 43 PM" src="https://github.com/robandpdx/workflow-script-injection/assets/95243761/e3fa3917-2834-45cc-a297-d25614c3185e">
+![alt script injection output in log](/images/exercise1.png "script injection output in log")
 
 Now let's look at the [Check issue title with action workflow](.github/workflows/check-issue-title-with-action.yml) which uses an [action](.github/actions/check-issue-title-action/action.yml) using the run command. The [action](.github/actions/check-issue-title-action/action.yml) uses the issue title in the run command as follows:
 ```
