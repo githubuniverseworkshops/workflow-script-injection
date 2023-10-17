@@ -77,7 +77,7 @@ from string file, YamlNode accesskey, Actions::Workflow workflow,  Actions::Job 
  workflow.getFileName() = file and
  with.getStep() = step and
  with.lookup("aws-access-key-id") = accesskey
- select step, "AWS_ACCESS_KEY_ID used as AWS credential instead of OIDC in Action '" + uses.getGitHubRepository() + "' in step '$@' in file " + filr, step, step.toString()
+ select step, "AWS_ACCESS_KEY_ID used as AWS credential instead of OIDC in Action '" + uses.getGitHubRepository() + "' in step '$@' in file " + file, step, step.toString()
 ```
 
 8. **Run** the query and you show see the results as follows:
@@ -101,8 +101,8 @@ from string file, YamlNode accesskey, Actions::Workflow workflow,  Actions::Job 
 10. **commit** and **push** your changes to the repository
 
    ```
-    queries:
-  - uses: ./codeql-custom-queries-javascript/incorrect-aws-credentials.ql
+   queries:
+     - uses: ./codeql-custom-queries-javascript/improper-aws-credentials.ql
    ```
 
     > Add image
