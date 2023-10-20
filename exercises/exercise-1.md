@@ -51,6 +51,7 @@ if [[ "" == $(wget github.com) && "octocat" =~ ^octocat ]]; then
 ```
 This payload will cause the script to run `wget github.com` as it evaluates the if condition.  
 
+### Step by step
 Let's see this in action by creating a new issue with this title and see what happens. Follow the steps below to exlpoit the script injection vulnerability in your repo:  
 1. Go to the Issues tab and click the green `New issue` button in the top right.  
 2. In the issue form type `" == $(wget github.com) && "octocat` in the title field.  

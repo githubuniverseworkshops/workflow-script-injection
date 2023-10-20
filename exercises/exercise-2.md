@@ -15,7 +15,7 @@ const comment="octocat";console.log('Script injected!!!');//"
 ```
 This payload closes the initial quote, then ends the command with a semicolon. This allows the following `console.log('Script injected!!!');` command to run as a separate command.  
 
-### Create an issue comment with the exploit payload
+### Step by step
 Let's see this in action by creating a new issue comment with this body and see what happens.  
 Follow the steps below to exlpoit the script injection vulnerability in your repo:  
 1. Go to the Issues tab and click one of the issue we had created previously.

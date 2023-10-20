@@ -3,6 +3,7 @@ The run command will create a script from its input and run that script. The run
 
 The way to mitigate this vulnerability is to put the user input into an environment variable, which is not used to generate the script that the run command executes.  
 
+### Step by step
 Let's edit the [Check issue title workflow](.github/workflows/check-issue-title.yml) to use an environment variable. Putting the user input into an environment variable, then using the environment variable in the script will mitigate the script injection vulnerability.  
 
 1. Open the file [.github/workflows/check-issue-title.yml](.github/workflows/check-issue-title.yml)  
