@@ -49,5 +49,5 @@ The [Exercise 5](../exercises/exercise-5.md) and [Exercise 6](../exercises/exerc
 > **NOTE**    
 > For your convenience a sample of this workflow is available in [`/solutions`](/solutions) directory.
 
-### :video_camera: Demo
+### 🎥 Demo
 https://github.com/githubuniverseworkshops/workflow-script-injection/assets/57544838/4580aa95-e81c-482b-ae75-8a0e838448a3
