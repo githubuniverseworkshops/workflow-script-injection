@@ -122,5 +122,6 @@ When the changes are `pushed`, the `Actions WorkFlow CodeQL` workflow should be 
 4. Now, click on the `Security` tab and you should see the `Security Overview` page and a **new** alert created.
 
 
-
+### 🎥 Demo
+https://github.com/githubuniverseworkshops/workflow-script-injection/assets/57544838/703caf1c-c461-4fbd-8450-d64b25b68420
 
