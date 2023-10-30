@@ -98,29 +98,29 @@ from string file, YamlNode accesskey, Actions::Workflow workflow,  Actions::Job 
 
 9. Now that the query is working, **save** the query.
 
-10. **commit** and **push** your changes to the repository
 
+## Modify your codescanning config to include the custom query
+
+1. Once the query changes have been pushed, you can modify the `codeql-config.yml` file to include the custom query
    ```
    queries:
      - uses: ./codeql-custom-queries-javascript/improper-aws-credentials.ql
    ```
 
-    > Add image
+
+2.  **stage** and **commit** and **push** the following files to the repository:
+    - `./codeql-config.yml`
+    - `./codeql-custom-queries-javascript/codeql-pack.lock.yml`
+    - `./codeql-custom-queries-javascript/codeql-pack.yml`
+    - `./codeql-custom-queries-javascript/improper-aws-credentials.ql`
+   
+When the changes are `pushed`, the `Actions WorkFlow CodeQL` workflow should be triggered. Now `click` on the [`Actions`](../../actions) tab and you should see the workflow being scheduled to run based on the `push` event. 
+
+3. Monitor the workflow run and ensure that it finishes successfully.
+
+4. Now, click on the `Security` tab and you should see the `Security Overview` page and a **new** alert created.
 
 
-## Modify your codescanning config to include the custom query
-
-1. Once the query changes have been pushed, you can modify the `codeql-config.yml` file to include the custom query
-2. 
-3. Commit this file into the `default`branch.
-
-When the file is committed, it will generate a `push` event and the `Actions WorkFlow CodeQL` workflow should be triggered. Now `click` on the [`Actions`](../../actions) tab and you should see the workflow being scheduled to run based on the `push` event. 
-
-4. Monitor the workflow run and ensure that it finishes successfully.
-
-5. Now, click on the `Security` tab. And you should see the `Security Overview` page and a **new** alert created.
-
-
-
-
+### 🎥 Demo
+https://github.com/githubuniverseworkshops/workflow-script-injection/assets/57544838/703caf1c-c461-4fbd-8450-d64b25b68420
 
