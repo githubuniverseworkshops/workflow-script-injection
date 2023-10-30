@@ -107,7 +107,6 @@ from string file, YamlNode accesskey, Actions::Workflow workflow,  Actions::Job 
      - uses: ./codeql-custom-queries-javascript/improper-aws-credentials.ql
    ```
 
-    > Add image
 
 2.  **stage** and **commit** and **push** the following files to the repository:
     - `./codeql-config.yml`
