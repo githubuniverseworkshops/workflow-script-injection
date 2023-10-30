@@ -122,5 +122,6 @@ When the changes are `pushed`, the `Actions WorkFlow CodeQL` workflow should be 
 
 
 ### 🎥 Demo
-https://github.com/githubuniverseworkshops/workflow-script-injection/assets/57544838/703caf1c-c461-4fbd-8450-d64b25b68420
+https://github.com/decyjphr-demo/demo2/assets/57544838/4a78541c-fb44-45ff-b003-1f2974537e14
+
 
