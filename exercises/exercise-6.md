@@ -58,3 +58,5 @@ to
 
 1. When the file is committed, the `Actions WorkFlow CodeQL` workflow should be triggered. Once this is completed, check the `security` tab to see the alerts for the new vulnerability.
 
+### 🎥 Demo
+https://github.com/githubuniverseworkshops/workflow-script-injection/assets/57544838/01ddb91f-ee91-4773-b0d7-83d8fefe0e1f
