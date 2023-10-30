@@ -50,4 +50,4 @@ The [Exercise 5](../exercises/exercise-5.md) and [Exercise 6](../exercises/exerc
 > For your convenience a sample of this workflow is available in [`/solutions`](/solutions) directory.
 
 ### 🎥 Demo
-https://github.com/githubuniverseworkshops/workflow-script-injection/assets/57544838/4580aa95-e81c-482b-ae75-8a0e838448a3
+https://github.com/decyjphr-demo/demo/assets/57544838/139b1512-143b-463f-9871-50ede2f2a4fb
