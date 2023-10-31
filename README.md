@@ -68,7 +68,7 @@ The [Check issue title workflow](.github/workflows/check-issue-title.yml) simply
 
 The [Check issue title with action workflow](.github/workflows/check-issue-title-with-action.yml) uses an [action](.github/actions/check-issue-title-action/action.yml) that simply checks if the input of the action begins with `octocat`. If so, the action succeeds. If not, the action fails.  
 
-This workflow and action abore are vulnerable to script injection. Let's find out why they are vulnerable, and how to exploit them.
+This workflow and action above are vulnerable to script injection. Let's find out why they are vulnerable, and how to exploit them.
 [Exercise 1](./exercises/exercise-1.md)  
 
 ## :bomb: Exercise 2 - Script injection in github-script action
