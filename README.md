@@ -28,8 +28,8 @@ In this workshop, you will:
 
 ## :mega: Prerequisites
 Before joining the workshop, there are a few items that you will need to install or bring with you.
-- an account on GitHub.com
-- a public repo created from this template repo
+- An account on GitHub.com
+- A public repo created from this template repo
 - Enable GitHub Actions in your repository
 - Enable GitHub Advanced Security in your repository
 
