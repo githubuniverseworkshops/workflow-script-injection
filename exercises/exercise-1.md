@@ -1,5 +1,5 @@
 # Exercise 1 - :bomb: Exploiting the script injection vulnerability in the run command
-The [Check issue title workflow](.github/workflows/check-issue-title.yml) uses the issue title in the `run` command as follows:
+The [Check issue title workflow](/.github/workflows/check-issue-title.yml) uses the issue title in the `run` command as follows:
 ```
 title="${{ github.event.issue.title }}"
 ```
@@ -29,7 +29,7 @@ Let's see this in action by creating a new issue with this title and see what ha
 
 ![alt script injection output in log](/images/exercise1.png "script injection output in log")
 
-Now let's look at the [Check issue title with action workflow](.github/workflows/check-issue-title-with-action.yml) which uses an [action](.github/actions/check-issue-title-action/action.yml) using the run command. The [action](.github/actions/check-issue-title-action/action.yml) uses the issue title in the run command as follows:
+Now let's look at the [Check issue title with action workflow](/.github/workflows/check-issue-title-with-action.yml) which uses an [action](/.github/actions/check-issue-title-action/action.yml) using the run command. The [action](/.github/actions/check-issue-title-action/action.yml) uses the issue title in the run command as follows:
 ```
 if [[ "${{ inputs.issue-title }}" =~ ^octocat ]]; then
 ...
@@ -38,7 +38,7 @@ We'll need to craft a different payload for this because the input is used direc
 ```
 " == $(ls -l $GITHUB_WORKSPACE) && "octocat
 ```
-If we look at the run of the [Check issue title with action workflow](.github/workflows/check-issue-title-with-action.yml) that was triggered using the payload we used above, we will notice that we don't see the output of the `ls -s $GITHUB_WORKSPACE` command in the logs. So, this workflow is not vulnerable, right? Wrong! This workflow is still vulnerable to script injection. Let's try using a different payload to see some evidence of that.  
+If we look at the run of the [Check issue title with action workflow](/.github/workflows/check-issue-title-with-action.yml) that was triggered using the payload we used above, we will notice that we don't see the output of the `ls -s $GITHUB_WORKSPACE` command in the logs. So, this workflow is not vulnerable, right? Wrong! This workflow is still vulnerable to script injection. Let's try using a different payload to see some evidence of that.  
 
 If we open an issue with the title...
 ```
