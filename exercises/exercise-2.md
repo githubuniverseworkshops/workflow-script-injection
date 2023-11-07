@@ -1,5 +1,5 @@
 # Exercise 2 - :bomb: Exploiting the script injection vulnerability in github-script action
-The [Check issue comment workflow](.github/workflows/check-issue-comment.yml) uses the issue comment body in the [github-script actions](https://github.com/actions/github-script) as follows:
+The [Check issue comment workflow](/.github/workflows/check-issue-comment.yml) uses the issue comment body in the [github-script actions](https://github.com/actions/github-script) as follows:
 ```
 const comment="${{ github.event.comment.body }}"
 ```
