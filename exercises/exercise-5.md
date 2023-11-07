@@ -4,7 +4,7 @@ Similar to the run command, the github-script action will create a script from i
 The way to mitigate this vulnerability is to put the user input into an environment variable, which is not used to generate the script that the github-script action executes.  
 
 ### Step by step
-1. Open the file [.github/workflows/check-issue-comment.yml](.github/workflows/check-issue-comment.yml)  
+1. Open the file [.github/workflows/check-issue-comment.yml](/.github/workflows/check-issue-comment.yml)  
 2. Add an environment variable section to the `Check issue comment` step...
 ```
       - name: Check issue comment
