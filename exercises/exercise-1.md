@@ -16,7 +16,7 @@ title="octocat"; ls -l $GITHUB_WORKSPACE""
 
 This payload closes the initial quote, then ends the command with a semicolon. This allows the following `ls -s` command to run as a separate command.  
 
-### Create an issue with the exploit payload
+### Step by step 1
 Let's see this in action by creating a new issue with this title and see what happens. Follow the steps below to exlpoit the script injection vulnerability in your repo:  
 1. Go to the Issues tab and click the green `New issue` button in the top right.  
 2. In the issue form type `octocat"; ls -l $GITHUB_WORKSPACE"` in the title field.  
@@ -51,7 +51,7 @@ if [[ "" == $(wget github.com) && "octocat" =~ ^octocat ]]; then
 ```
 This payload will cause the script to run `wget github.com` as it evaluates the if condition.  
 
-### Step by step
+### Step by step 2
 Let's see this in action by creating a new issue with this title and see what happens. Follow the steps below to exlpoit the script injection vulnerability in your repo:  
 1. Go to the Issues tab and click the green `New issue` button in the top right.  
 2. In the issue form type `" == $(wget github.com) && "octocat` in the title field.  
