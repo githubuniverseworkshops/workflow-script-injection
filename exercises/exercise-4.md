@@ -4,9 +4,9 @@ The run command will create a script from its input and run that script. The run
 The way to mitigate this vulnerability is to put the user input into an environment variable, which is not used to generate the script that the run command executes.  
 
 ### Step by step
-Let's edit the [Check issue title workflow](.github/workflows/check-issue-title.yml) to use an environment variable. Putting the user input into an environment variable, then using the environment variable in the script will mitigate the script injection vulnerability.  
+Let's edit the [Check issue title workflow](/.github/workflows/check-issue-title.yml) to use an environment variable. Putting the user input into an environment variable, then using the environment variable in the script will mitigate the script injection vulnerability.  
 
-1. Open the file [.github/workflows/check-issue-title.yml](.github/workflows/check-issue-title.yml)  
+1. Open the file [.github/workflows/check-issue-title.yml](/.github/workflows/check-issue-title.yml)  
 2. Add an environment variable section to the `Check issue title` step...
 ```
       - name: Check issue title
@@ -24,8 +24,8 @@ Let's edit the [Check issue title workflow](.github/workflows/check-issue-title.
 4. Test this out by [creating a new issue as we did in exercise 1](./exercise-1.md#create-an-issue-with-the-exploit-payload).
 5. Notice that the `ls -s $GITHUB_WORKSPACE` command does not appear in the output as it did previously.  
 
-Next, let's edit the [Check issue title action](.github/actions/check-issue-title-action/action.yml) to use an environment variable also.
-1. Open the file [.github/actions/check-issue-title-action/action.yml](.github/actions/check-issue-title-action/action.yml)  
+Next, let's edit the [Check issue title action](/.github/actions/check-issue-title-action/action.yml) to use an environment variable also.
+1. Open the file [.github/actions/check-issue-title-action/action.yml](/.github/actions/check-issue-title-action/action.yml)  
 2. Add an environment variable section to the `Check issue title` step...
 ```
       - name: Check issue title
