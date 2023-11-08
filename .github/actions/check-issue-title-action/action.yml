@@ -9,10 +9,8 @@ runs:
   steps:
     - name: Check issue title
       shell: bash
-      env:
-        ISSUE_TITLE: ${{ github.event.issue.title }}
       run: |
-        if [[ "$ISSUE_TITLE" =~ ^octocat ]]; then
+        if [[ "${{ inputs.issue-title }}" =~ ^octocat ]]; then
           echo "Issue title starts with 'octocat'"
           exit 0
           else
