@@ -10,7 +10,7 @@ The way to mitigate this vulnerability is to put the user input into an environm
       - name: Check issue comment
         uses: actions/github-script@v6
         env:
-            ISSUE_TITLE: ${{ github.event.issue.title }}
+            ISSUE_COMMENT: ${{ github.event.comment.body }}
         with:
           script:
           ...
